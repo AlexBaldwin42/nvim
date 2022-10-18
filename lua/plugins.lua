@@ -2,157 +2,157 @@ local fn = vim.fn
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-     packer_bootstrap = fn.system 
-        { "git",
-        "clone",
-        "--depth",
-        "1",
-        "https://github.com/wbthomason/packer.nvim",
-        install_path 
-    }
+  PACKER_BOOTSTRAP= fn.system 	{
+		"git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path 
+  }
+  print "Installing packer close and reopen Neovim..."
+	vim.cmd[[packadd packer.nvim]]
 
-    print("Installing packer...")
-    vim.cmd[[packadd packer.nvim]]
 end
 
-
-
--- reload neovim whenever plugins.lua is saved
-vim.cmd([[
-augroup packer_user_config
-autocmd!
-autocmd BufWritePost plugins.lua source <afile> | PackerSync
-augroup end
-]])
-
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+	augroup packer_user_config
+		autocmd!
+		autocmd BufWritePost plugins.lua source <afile> | PackerSync
+	augroup end
+]]
 
 -- Protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then 
-return
+	return
 end
 
 
 -- Have packer use a popup window
 packer.init {
-display = {
-open_fn = function()
-  return require("packer.util").float { border = "rounded" }
-end,
-},
+	display = {
+		open_fn = function()
+	  return require("packer.util").float { border = "rounded" }
+		end,
+	},
 }
 
+-- Install your plugins
 return require("packer").startup({
 function(use)
-    use("wbthomason/packer.nvim")
+    use "wbthomason/packer.nvim"
+		use "nvim-lua/popup.nvim"
+		use "nvim-lua/plenary.nvim"
 
     -- color scheme
     --use("rebelot/kanagawa.nvim")
-    use("folke/tokyonight.nvim")
+    use "folke/tokyonight.nvim"
 
     -- treesitter
-    use({
+    use {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
-    })
-    use("nvim-treesitter/nvim-treesitter-textobjects")
+    }
+    use "nvim-treesitter/nvim-treesitter-textobjects"
 
     -- automatic bracket pairs
-    use({
+    use {
         "windwp/nvim-autopairs",
         config = function()
             require("nvim-autopairs").setup({})
         end,
-    })
+    } 
 
     -- autoclose and rename html tags
-    use({
+    use {
         "windwp/nvim-ts-autotag",
         config = function()
             require("nvim-ts-autotag").setup({})
         end,
-    })
+    } 
 
     -- indent guides
-    use("lukas-reineke/indent-blankline.nvim")
+    use "lukas-reineke/indent-blankline.nvim" 
 
     -- smooth scrolling
-    use("karb94/neoscroll.nvim")
+    use "karb94/neoscroll.nvim" 
 
     -- git decorations in files
-    use({
+    use {
         "lewis6991/gitsigns.nvim",
         config = function()
             require("gitsigns").setup()
         end,
-    })
+    } 
 
     -- surround selections
-    use("kylechui/nvim-surround")
+    use "kylechui/nvim-surround" 
 
     -- commenting
-    use({
+    use {
         "numToStr/Comment.nvim",
         config = function()
             require("Comment").setup({
                 pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
             })
         end,
-    })
-    use("JoosepAlviste/nvim-ts-context-commentstring")
+    } 
+    use "JoosepAlviste/nvim-ts-context-commentstring"
 
     -- telescope
-    use({
+    use {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.0",
         requires = { { "nvim-lua/plenary.nvim" } },
-    })
+    } 
 
     -- telescope code actions ui
-    use("nvim-telescope/telescope-ui-select.nvim")
+    use "nvim-telescope/telescope-ui-select.nvim" 
 
     -- telescope file browser
-    use("nvim-telescope/telescope-file-browser.nvim")
+    use "nvim-telescope/telescope-file-browser.nvim" 
 
     -- status line
-    use({
+    use {
         "nvim-lualine/lualine.nvim",
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
-    })
+    } 
 
     -- snippets
-    use("L3MON4D3/LuaSnip")
-    use("rafamadriz/friendly-snippets")
+    use "L3MON4D3/LuaSnip" 
+    use "rafamadriz/friendly-snippets" 
 
     -- lsp
-    use("neovim/nvim-lspconfig")
+    use "neovim/nvim-lspconfig" 
 
     -- lsp installer
-    use("williamboman/mason.nvim")
-    use("williamboman/mason-lspconfig.nvim")
+    use "williamboman/mason.nvim" 
+    use "williamboman/mason-lspconfig.nvim" 
 
     -- lsp ui
-    use("glepnir/lspsaga.nvim")
+    use "glepnir/lspsaga.nvim" 
 
     -- formatting, code actions and diagnostics
-    use({
+    use {
         "jose-elias-alvarez/null-ls.nvim"
 --,			commit = "76d0573fc159839a9c4e62a0ac4f1046845cdd50",
-    })
+    } 
 
     -- diagnostics list
-    use("folke/trouble.nvim")
+    use "folke/trouble.nvim" 
 
     -- autocompletion
-    use("hrsh7th/nvim-cmp")
-    use("hrsh7th/cmp-buffer")
-    use("hrsh7th/cmp-path")
-    use("hrsh7th/cmp-cmdline")
-    use("hrsh7th/cmp-nvim-lsp")
-    use("hrsh7th/cmp-nvim-lua")
-    use("saadparwaiz1/cmp_luasnip")
+    use "hrsh7th/nvim-cmp" 
+    use "hrsh7th/cmp-buffer" 
+    use "hrsh7th/cmp-path" 
+    use "hrsh7th/cmp-cmdline" 
+    use "hrsh7th/cmp-nvim-lsp" 
+    use "hrsh7th/cmp-nvim-lua" 
+    use "saadparwaiz1/cmp_luasnip" 
 
-    if packer_bootstrap then
+    if PACKER_BOOTSTRAP then
         require("packer").sync()
     end
 end,

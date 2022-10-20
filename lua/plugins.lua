@@ -124,21 +124,35 @@ function(use)
     use "L3MON4D3/LuaSnip" 
     use "rafamadriz/friendly-snippets" 
 
+
+		
+    -- lsp installer
+    use {"williamboman/mason.nvim",require("mason").setup()} 
+    use {"williamboman/mason-lspconfig.nvim", require("mason-lspconfig").setup({
+			ensure_installed = {"sumneko_lua", "csharp_ls", "bashls", "quick_lint_js"},
+			automatic_installation = true
+		})} 
     -- lsp
     use "neovim/nvim-lspconfig" 
-
-    -- lsp installer
-    use "williamboman/mason.nvim" 
-    use "williamboman/mason-lspconfig.nvim" 
-
+		use "mfussenegger/nvim-dap"
     -- lsp ui
     use "glepnir/lspsaga.nvim" 
 
     -- formatting, code actions and diagnostics
     use {
-        "jose-elias-alvarez/null-ls.nvim"
+        "jose-elias-alvarez/null-ls.nvim",
+				require("null-ls").setup({
+					sources = {
+						require("null-ls").builtins.formatting.stylua,
+		        require("null-ls").builtins.diagnostics.eslint,
+    		    require("null-ls").builtins.completion.spell,
+						require("null-ls").builtins.formatting.csharpier,
+					}
+				})
 --,			commit = "76d0573fc159839a9c4e62a0ac4f1046845cdd50",
     } 
+		--use "mhartington/formatter.nvim"
+		--use "mfussenegger/nvim-lint" 
 
     -- diagnostics list
     use "folke/trouble.nvim" 

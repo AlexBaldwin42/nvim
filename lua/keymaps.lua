@@ -28,12 +28,12 @@ vim.keymap.set('n', 'fh', builtin.help_tags, {})
 keymap("v" , "<", "<gv", opts)
 keymap("v" , ">", ">gv", opts)
 
+-- Replacement behavior --
+keymap("v", "p", '"_dP', opts)
+
 -- Move text up and down --
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
-
--- Replacement behavior --
-keymap("v", "p", '"_dP', opts)
 
 -- Visual Block --
 -- Move text up and down

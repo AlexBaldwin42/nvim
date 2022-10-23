@@ -31,6 +31,12 @@ keymap("v" , ">", ">gv", opts)
 -- Replacement behavior --
 keymap("v", "p", '"_dP', opts)
 
+keymap("n", "<C-j>", "<C-w>j", opts)
+
+-- Running c sharp --
+keymap("i", "<f5>", "<ESC>:w<CR><C-w>jiclear<CR>dotnet run<CR><C-\\><C-n><C-w>k", opts)
+keymap("n", "<f5>", ":w<CR><C-w>jiclear<CR>dotnet run<CR><C-\\><C-n><C-w>k", opts)
+
 -- Move text up and down --
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
@@ -41,3 +47,9 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+
+-- Terminal --
+keymap("t", "<ESC>" , "<C-\\><C-n>",opts)
+
+
+

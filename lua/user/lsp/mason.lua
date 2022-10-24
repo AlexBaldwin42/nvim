@@ -3,7 +3,7 @@ local servers = {
 	"sumneko_lua",
 	"pyright",
 	"jsonls",
-	"csharp_ls",
+	"omnisharp",
 }
 
 local settings = {

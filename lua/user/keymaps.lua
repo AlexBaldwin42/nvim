@@ -19,10 +19,10 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Visual --
 -- -- Open filefinder --
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', 'ff', builtin.find_files, {})
-vim.keymap.set('n', 'fg', builtin.live_grep, {})
-vim.keymap.set('n', 'fb', builtin.buffers, {})
-vim.keymap.set('n', 'fh', builtin.help_tags, {})
+vim.keymap.set('n', '<C-f><C-f>', builtin.find_files, {})
+vim.keymap.set('n', '<C-g><C-g>', builtin.live_grep, {})
+vim.keymap.set('n', '<C-b><C-b>', builtin.buffers, {})
+vim.keymap.set('n', '<C-h><C-h>', builtin.help_tags, {})
 
 -- Stay in indent mode --
 keymap("v" , "<", "<gv", opts)

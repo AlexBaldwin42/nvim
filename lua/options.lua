@@ -5,6 +5,7 @@ opt.ignorecase = true
 opt.shiftwidth = 2
 opt.tabstop = 2
 
+opt.termguicolors = true
 opt.splitbelow = true
 opt.splitright = true
 opt.smartcase = true

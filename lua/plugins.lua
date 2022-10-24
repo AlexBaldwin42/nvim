@@ -120,12 +120,7 @@ function(use)
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
     } 
 
-    -- snippets
-    use "L3MON4D3/LuaSnip" 
-    use "rafamadriz/friendly-snippets" 
 
-
-		
     -- lsp installer
     use {"williamboman/mason.nvim",require("mason").setup()} 
     use {"williamboman/mason-lspconfig.nvim", require("mason-lspconfig").setup({
@@ -166,7 +161,11 @@ function(use)
     use "hrsh7th/cmp-nvim-lua" 
     use "saadparwaiz1/cmp_luasnip" 
 
-    if PACKER_BOOTSTRAP then
+    -- snippets
+    use "L3MON4D3/LuaSnip" 
+    use "rafamadriz/friendly-snippets" 
+
+		if PACKER_BOOTSTRAP then
         require("packer").sync()
     end
 end,

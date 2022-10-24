@@ -4,11 +4,14 @@ My neovim config
 install.sh is install for ubuntu to install the latest version of neovim  
 
 ## WSL
-I removed xclip and instal xsel
+I removed xclip and instal xsel as xclip froze up when copying and pasting.
 
 Remove copy and paste or change to ctrl+shift in the json
 Remove ctrl+, from the Actions
 install sudo apt-get install ripgrep 
+
+### Download Nerdfont 
+https://www.nerdfonts.com/font-downloads
 
 ## about
 .local/share/nvim is where plugins keep the data

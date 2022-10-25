@@ -45,18 +45,14 @@ function(use)
     use "wbthomason/packer.nvim"
 		use "nvim-lua/popup.nvim"
 		use "nvim-lua/plenary.nvim"
-
     -- color scheme
-    --use("rebelot/kanagawa.nvim")
     use "folke/tokyonight.nvim"
-
     -- treesitter
     use {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
     }
     use "nvim-treesitter/nvim-treesitter-textobjects"
-
     -- automatic bracket pairs
     use {
         "windwp/nvim-autopairs",
@@ -64,7 +60,6 @@ function(use)
             require("nvim-autopairs").setup({})
         end,
     } 
-
     -- autoclose and rename html tags
     use {
         "windwp/nvim-ts-autotag",
@@ -72,13 +67,11 @@ function(use)
             require("nvim-ts-autotag").setup({})
         end,
     } 
-
     -- indent guides
     use "lukas-reineke/indent-blankline.nvim" 
 
     -- smooth scrolling
     use "karb94/neoscroll.nvim" 
-
     -- git decorations in files
     use {
         "lewis6991/gitsigns.nvim",
@@ -86,10 +79,8 @@ function(use)
             require("gitsigns").setup()
         end,
     } 
-
     -- surround selections
     use "kylechui/nvim-surround" 
-
     -- commenting
     use {
         "numToStr/Comment.nvim",
@@ -100,17 +91,14 @@ function(use)
         end,
     } 
     use "JoosepAlviste/nvim-ts-context-commentstring"
-
     -- telescope
     use {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.0",
         requires = { { "nvim-lua/plenary.nvim" } },
     } 
-
     -- telescope code actions ui
     use "nvim-telescope/telescope-ui-select.nvim" 
-
     -- telescope file browser
     use "nvim-telescope/telescope-file-browser.nvim" 
 
@@ -122,11 +110,8 @@ function(use)
 
 
     -- lsp installer
-    use {"williamboman/mason.nvim",require("mason").setup()} 
-    use {"williamboman/mason-lspconfig.nvim", require("mason-lspconfig").setup({
-			ensure_installed = {"sumneko_lua", "csharp_ls", "bashls", "quick_lint_js"},
-			automatic_installation = true
-		})} 
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
     -- lsp
     use "neovim/nvim-lspconfig" 
 		use "mfussenegger/nvim-dap"
@@ -134,18 +119,6 @@ function(use)
     use "glepnir/lspsaga.nvim" 
 
     -- formatting, code actions and diagnostics
-    use {
-        "jose-elias-alvarez/null-ls.nvim",
-				require("null-ls").setup({
-					sources = {
-						require("null-ls").builtins.formatting.stylua,
-		        require("null-ls").builtins.diagnostics.eslint,
-    		    require("null-ls").builtins.completion.spell,
-						require("null-ls").builtins.formatting.csharpier,
-					}
-				})
---,			commit = "76d0573fc159839a9c4e62a0ac4f1046845cdd50",
-    } 
 		--use "mhartington/formatter.nvim"
 		--use "mfussenegger/nvim-lint" 
 
